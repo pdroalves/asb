@@ -1,5 +1,5 @@
 /* Initialization */
-Draw(a,b,c);
+//Draw(a,b,c);
 
 /* Canvas and context objects */
 
@@ -72,10 +72,10 @@ function YC(y) {
 /* Rendering functions */
 
 // Clears the canvas, draws the axes and graphs the function F.
-function Draw(a,b,c) {
+function Draw() {
 
  // Evaluate the user-supplied code, which must bind a value to F.
- var F = function(x){a*x*x+b*x+c};
+ var F = function(x){return window.a*x*x+window.b*x+window.c};
  
  if (Canvas.getContext) {
   
@@ -96,7 +96,7 @@ function Draw(a,b,c) {
 // Returns the distance between ticks on the X axis:
 function XTickDelta() {
   return 1 ;
-}F
+}
 
 // Returns the distance between ticks on the Y axis:
 function YTickDelta() {
