@@ -1,10 +1,5 @@
 /* Initialization */
-
-// To be called when the page finishes loading:
-function init() {
- Draw() ;
-}
-
+Draw(a,b,c);
 
 /* Canvas and context objects */
 
@@ -15,7 +10,7 @@ var Width = Canvas.width ;
 var Height = Canvas.height ;
 
 
-/*
+/*F
   The origin (0,0) of the canvas is the upper left:
 
   (0,0)
@@ -77,10 +72,10 @@ function YC(y) {
 /* Rendering functions */
 
 // Clears the canvas, draws the axes and graphs the function F.
-function Draw() {
+function Draw(a,b,c) {
 
  // Evaluate the user-supplied code, which must bind a value to F.
- eval(document.getElementById('function-code').value) ;
+ var F = function(x){a*x*x+b*x+c};
  
  if (Canvas.getContext) {
   
@@ -101,7 +96,7 @@ function Draw() {
 // Returns the distance between ticks on the X axis:
 function XTickDelta() {
   return 1 ;
-}
+}F
 
 // Returns the distance between ticks on the Y axis:
 function YTickDelta() {
