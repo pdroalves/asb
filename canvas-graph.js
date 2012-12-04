@@ -1,5 +1,5 @@
 /* Initialization */
-Draw(a,b,c);
+//Draw(a,b,c);
 
 /* Canvas and context objects */
 
@@ -9,6 +9,8 @@ var Ctx = null ;
 var Width = Canvas.width ;
 var Height = Canvas.height ;
 
+var horizonteMaxX = 10;
+var horizonteMinX = -10;
 
 /*F
   The origin (0,0) of the canvas is the upper left:
@@ -36,16 +38,26 @@ var Height = Canvas.height ;
   ther values from a from instead of having them hard-coded.
  
  */
+ 
+function setMaxX(n){
+	horizonteMaxX = n;
+	return;
+}
+
+function setMinX(n){
+	horizonteMinX = n;
+	return;
+}
 
 
 // Returns the right boundary of the logical viewport:
 function MaxX() {
-  return 10 ;
+  return horizonteMaxX ;
 }
 
 // Returns the left boundary of the logical viewport:
 function MinX() {
-  return -10 ;
+  return horizonteMinX ;
 }
 
 // Returns the top boundary of the logical viewport:
@@ -88,7 +100,7 @@ function Draw(a,b,c) {
    RenderFunction(F) ;
   
   } else {
-    // Do nothing.
+    document.writeln("Deu pau");
   }
 }
 
@@ -96,7 +108,7 @@ function Draw(a,b,c) {
 // Returns the distance between ticks on the X axis:
 function XTickDelta() {
   return 1 ;
-}F
+}
 
 // Returns the distance between ticks on the Y axis:
 function YTickDelta() {
