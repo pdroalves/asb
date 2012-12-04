@@ -112,10 +112,25 @@
 					else{document.getElementById("saida").innerHTML = "Não há solução."}
 				}else{
 						x1 = -c/b;
-						setMaxX(x1+0.5);
-						setMinX(x1-0.5);
-						setMaxY(10);
-						setMinY(-10);
+						y = c;
+						if(x1>0) {
+							setMaxX(x1+1.5);
+							setMinX(-1.5);
+						}
+						else {
+							setMaxX(+1.5);
+							setMinX(x1-1.5);
+						}
+						
+						if(y>0) {
+							setMaxY(y+1.5);
+							setMinY(-1.5);
+						} else
+						{
+							setMaxY(+1.5);
+							setMinY(y-1.5);
+						}
+							
 						txt = "<br \>\n"
 						txt += "Resolvendo um polinômio de primeiro grau:\n"
 						txt += "\\\[x = \\frac{-c}{b} = \\frac{" + -c + "}{" + b + "} = " + x1.toPrecision(4) + "\\\]";
