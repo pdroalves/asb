@@ -132,6 +132,7 @@ function DrawLine(b,c,x0) {
    DrawAxes() ;
    RenderFunction(F) ;
    DrawPonto(x0,0,"x: " + x0.toPrecision(2));
+   DrawPonto(0,c,"y: " + c.toPrecision(2));
   } else {
     document.writeln("Not working");
   }
