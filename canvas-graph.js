@@ -43,13 +43,13 @@ var horizonteMinY = -10;
 
 // Seta o limite direito no eixo X
 function setMaxX(n){
-	horizonteMaxX = n;
+	horizonteMaxY = n;
 	return;
 }
 
 // Seta o limite esquerdo no eixo X
 function setMinX(n){
-	horizonteMinX = n;
+	horizonteMinY = n;
 	return;
 	
 // Seta o limite superior no eixo Y

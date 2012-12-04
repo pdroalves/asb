@@ -1,0 +1,15 @@
+div#all{
+	width:100%;
+}
+
+div#eq{
+	float:left;
+	margin:10%;
+}
+
+canvas#xy-graph{
+	float:left;
+	height:30%;
+	width:20%;
+	margin:10%;
+}
