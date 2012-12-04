@@ -16,7 +16,7 @@
             window.b = b;
             window.c = c;
             
-            if(a != 0){//Parabola
+            if(a != 0 && !isNaN(a)){//Parabola
 				console.log("Parabola");
 				delta = b^2 - 4*a*c
 				
@@ -79,10 +79,8 @@
 				
 				// Desenha o gráfico
 				if(delta >= 0){
-					MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 					DrawParabola(a, b, c,x1,x2,xv,yv);
 				}else{
-					MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 					DrawParabola(a, b, c,null,null,xv,yv);
 				}
 				
@@ -104,11 +102,12 @@
 						document.getElementById("saida").innerHTML = txt;
 
 						// Desenha o gráfico
-						MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 						DrawLine(b, c,x1);
 				}
 			}
 			
+			// Atualiza as fórmulas
+			MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         }
         </script>
     </head>
@@ -139,6 +138,6 @@
             "HTML-CSS": { availableFonts: ["TeX"] }
         });
         </script>
-        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+        <script type="text/javascript" src="MathJax/MathJax.js"></script>
     </body>
 </html>
