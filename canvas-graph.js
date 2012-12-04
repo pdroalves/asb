@@ -11,6 +11,8 @@ var Height = Canvas.height ;
 
 var horizonteMaxX = 10;
 var horizonteMinX = -10;
+var horizonteMaxY = 10;
+var horizonteMinY = -10;
 
 /*F
   The origin (0,0) of the canvas is the upper left:
@@ -38,14 +40,27 @@ var horizonteMinX = -10;
   ther values from a from instead of having them hard-coded.
  
  */
- 
+
+// Seta o limite direito no eixo X
 function setMaxX(n){
 	horizonteMaxX = n;
 	return;
 }
 
+// Seta o limite esquerdo no eixo X
 function setMinX(n){
 	horizonteMinX = n;
+	return;
+	
+// Seta o limite superior no eixo Y
+}function setMaxY(n){
+	horizonteMaxY = n;
+	return;
+}
+
+// Seta o limite inferior no eixo Y
+function setMinY(n){
+	horizonteMinY = n;
 	return;
 }
 
@@ -62,12 +77,12 @@ function MinX() {
 
 // Returns the top boundary of the logical viewport:
 function MaxY() {
-  return MaxX() * Height / Width;
+  return  horizonteMaxY;
 }
 
 // Returns the bottom boundary of the logical viewport:
 function MinY() {
-   return MinX() * Height / Width;
+   return  horizonteMinY;
 }
 
 // Returns the physical x-coordinate of a logical x-coordinate:
@@ -84,10 +99,10 @@ function YC(y) {
 /* Rendering functions */
 
 // Clears the canvas, draws the axes and graphs the function F.
-function Draw(a,b,c) {
+function Draw() {
 
  // Evaluate the user-supplied code, which must bind a value to F.
- var F = function(x){a*x*x+b*x+c};
+ var F = function(x){return window.a*x*x+window.b*x+window.c};
  
  if (Canvas.getContext) {
   

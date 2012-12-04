@@ -2,36 +2,86 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Hello World</title>
+        <title>ASB solves Bhaskara</title>
         <script>
         function bla()
         {
-            a = document.getElementById("a").value;
-            b = document.getElementById("b").value;
-            c = document.getElementById("c").value;
-            txt = "<br \>\n"
+            a = parseFloat(document.getElementById("a").value);
+            b = parseFloat(document.getElementById("b").value);
+            c = parseFloat(document.getElementById("c").value);
+            window.a = a;
+            window.b = b;
+            window.c = c;
+            
             delta = b^2 - 4*a*c
-            txt += "&#916" + " = b²-4ac = " + b + "² - 4 * " + a + " * " + c + " = " + delta
+            x1 = ((-b + Math.sqrt(delta))/(2*a));
+            x2 = ((-b - Math.sqrt(delta))/(2*a));
+            
+            xv = (-b)/(2*a);
+            yv = a*xv*xv+b*xv+c;
+            
+            txt = "<br \>\n"
+            txt += "\\\[\\Delta = b^2 - 4ac\\\]"
+            txt += "\\\[\\Delta = " + b + "² - 4 * " + a + " * " + c + " = " + delta + "\\\]"
+            txt += "<br \>\n"
+            txt += "\\\[x_1 = \\frac{-b + \\sqrt{&#916}}{2a} = \\frac{" + -b + " + " + Math.sqrt(delta).toPrecision(4) + "}{" + 2*a + "} = " + x1.toPrecision(4) + "\\\]";
+            
+            txt += "<br \>\n"
+            txt += "\\\[x_2 = \\frac{-b - \\sqrt{&#916}}{2a} = \\frac{" + -b + " - " + Math.sqrt(delta).toPrecision(4) + "}{" + 2*a + "} = " + x2.toPrecision(4) + "\\\]";
+            
             if(delta<0)
             {
                 txt += "<br \>\n"
                 txt += "Delta menor que zero (raízes complexas)"
             }
+            
             document.getElementById("saida").innerHTML = txt;
             
-            //Draw();
-            //RenderFunction( function(x){a*x*x*x + b*x + c} );
+            diffRaizes = Math.sqrt(delta)/a;
+            
+            setMaxX(Math.max(x1*1.5,x2*1.5));
+            setMinX(Math.min(x1*1.5,x2*1.5));
+            
+            if(yv < 0)
+            {
+				setMaxY(-yv/2);
+				setMinY(yv*1.5);
+			}else{
+				setMaxY(yv*1.5);
+				setMinY(-yv/2);
+			}
+			
+            // Desenha o gráfico
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+            Draw(a, b, c);
         }
         </script>
     </head>
     <body onload="javascript:bla()">
-        <h1>Hello World</h1>
-        <p>
-            Jamie was here.
-        </p>
-        <input type="text" style="width:50px" id="a" value=1 onchange="javscript:bla()"></input> x² + 
-        <input type="text" style="width:50px" id="b" value=0 onchange="javscript:bla()"></input> x + 
-        <input type="text" style="width:50px" id="c" value=-4 onchange="javscript:bla()"></input> = 0
+        <center>
+        <input type="text" style="width:50px" id="a" value=1 onkeydown="javscript:bla()" onkeyup="javscript:bla()"></input> x² + 
+        <input type="text" style="width:50px" id="b" value=0 onkeydown="javscript:bla()" onkeyup="javscript:bla()"></input> x + 
+        <input type="text" style="width:50px" id="c" value=-4 onkeydown="javscript:bla()" onkeyup="javscript:bla()"></input> = 0
         <div id="saida"> a</div>
+        <canvas id="xy-graph"></canvas>
+        </center>
+        
+        <script type="text/javascript" src="canvas-graph.js"></script>
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$','$'], ["\\[","\\]"] ],
+            processEscapes: true
+            },
+            TeX: {
+            extensions: ["AMSmath.js", "AMSsymbols.js"]
+            },
+            "HTML-CSS": { availableFonts: ["TeX"] }
+        });
+        </script>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
     </body>
 </html>
