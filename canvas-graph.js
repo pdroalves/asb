@@ -244,7 +244,7 @@ function DrawAxes() {
 
 
 // When rendering, XSTEP determines the horizontal distance between points:
-var XSTEP = (MaxX()-MinX())/(Width) ;
+var XSTEP = 0.1*(MaxX()-MinX())/(Width) ;
 
 
 // RenderFunction(f) renders the input funtion f on the canvas.
