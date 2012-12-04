@@ -14,6 +14,8 @@ var horizonteMinX = -10;
 var horizonteMaxY = 10;
 var horizonteMinY = -10;
 
+var radius = 3;
+
 /*F
   The origin (0,0) of the canvas is the upper left:
 
@@ -95,11 +97,49 @@ function YC(y) {
   return Height - (y - MinY()) / (MaxY() - MinY()) * Height ;
 }
 
+function DrawPonto(x,y,txt){
+	 if (Canvas.getContext) {
+		Ctx = Canvas.getContext('2d');
+		Ctx.beginPath();
+		//Ctx.moveTo(XC(x),YC(y));
+		Ctx.fillText(txt,XC(x+1), YC(y+1));
+		Ctx.arc(XC(x), YC(y), radius, 0 , 2 * Math.PI, false);
+		Ctx.fillStyle = 'black';
+		Ctx.fill();
+		Ctx.strokeStyle = '#000000';
+		Ctx.stroke();
+	}else{
+		document.writeln("Not working.");
+	}
+}
 
 /* Rendering functions */
 
 // Clears the canvas, draws the axes and graphs the function F.
-function Draw() {
+function DrawLine(b,c,x0) {
+	//Recebe os coeficientes b e c além da raiz da reta
+
+ // Evaluate the user-supplied code, which must bind a value to F.
+ var F = function(x){return window.b*x+window.c};
+ 
+ if (Canvas.getContext) {
+  
+   // Set up the canvas:
+   Ctx = Canvas.getContext('2d');
+   Ctx.clearRect(0,0,Width,Height) ;
+
+   // Draw:
+   DrawAxes() ;
+   RenderFunction(F) ;
+   DrawPonto(x0,0,"Raiz");
+  } else {
+    document.writeln("Not working");
+  }
+}
+
+
+function DrawParabola(a,b,c,x1,x2,xv,yv) {
+	// Recebe os coeficientes a,b e c, as duas raizes x1 e x2 além das coordenadas xv e yv do vertice
 
  // Evaluate the user-supplied code, which must bind a value to F.
  var F = function(x){return window.a*x*x+window.b*x+window.c};
@@ -113,12 +153,15 @@ function Draw() {
    // Draw:
    DrawAxes() ;
    RenderFunction(F) ;
-  
+   if(x1 != null && x2 != null){
+	   DrawPonto(x1,0,"Raiz");
+	   DrawPonto(x2,0,"Raiz");
+   }
+   DrawPonto(xv,yv,"Vértice");
   } else {
     document.writeln("Deu pau");
   }
 }
-
 
 // Returns the distance between ticks on the X axis:
 function XTickDelta() {
@@ -201,7 +244,7 @@ function DrawAxes() {
 
 
 // When rendering, XSTEP determines the horizontal distance between points:
-var XSTEP = (MaxX()-MinX())/Width ;
+var XSTEP = (MaxX()-MinX())/(Width) ;
 
 
 // RenderFunction(f) renders the input funtion f on the canvas.
