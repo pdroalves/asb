@@ -19,11 +19,6 @@
             if(a != 0){//Parabola
 				console.log("Parabola");
 				delta = b^2 - 4*a*c
-				x1 = ((-b + Math.sqrt(delta))/(2*a));
-				x2 = ((-b - Math.sqrt(delta))/(2*a));
-            
-				xv = (-b)/(2*a);
-				yv = a*xv*xv+b*xv+c;
 				
 				txt = "<br \>\n"
 				txt += "Resolvendo um polinômio de segundo grau:\n"
@@ -32,9 +27,28 @@
 				txt += "<br \>\n"
 				if(delta<0)
 				{
+				
+					xv = (-b)/(2*a);
+					yv = a*xv*xv+b*xv+c;
 					txt += "<br \>\n"
-					txt += "Delta menor que zero (raízes complexas)"
+					txt += "Delta menor que zero (raízes complexas)!"
+					txt += "Raízes:\n"
+					txt += "\\\[x_1 = \\frac{-b + \\sqrt{&#916}}{2a} = \\frac{" + -b + " + " + Math.sqrt(-delta).toPrecision(4) + "i }{" + 2*a + "} = " -b/2 + " "+ Math.sqrt(-delta).toPrecision(4)/2 + "i\\\]";
+						
+					txt += "<br \>\n"
+					txt += "\\\[x_2 = \\frac{-b - \\sqrt{&#916}}{2a} = \\frac{" + -b + " - " + Math.sqrt(-delta).toPrecision(4) + "i }{" + 2*a + "} = " + x2.toPrecision(4) + "i\\\]";
+					if(a > 0){
+						txt += "Ponto mínimo em ("+xv+","+yv+")."
+					}else{
+						txt += "Ponto máximo em ("+xv+","+yv+")."
+					}
+				
 				}else{
+					x1 = ((-b + Math.sqrt(delta))/(2*a));
+					x2 = ((-b - Math.sqrt(delta))/(2*a));
+				
+					xv = (-b)/(2*a);
+					yv = a*xv*xv+b*xv+c;
 					txt += "Raízes:\n"
 					txt += "\\\[x_1 = \\frac{-b + \\sqrt{&#916}}{2a} = \\frac{" + -b + " + " + Math.sqrt(delta).toPrecision(4) + "}{" + 2*a + "} = " + x1.toPrecision(4) + "\\\]";
 						
