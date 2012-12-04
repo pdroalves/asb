@@ -20,10 +20,15 @@
 				console.log("Parabola");
 				delta = b^2 - 4*a*c
 				
+				function par(n){
+					if(n<0) return "(" + n + ")";
+					else return n;
+				}
+				
 				txt = "<br \>\n"
 				txt += "Resolvendo um polinômio de segundo grau:\n"
 				txt += "\\\[\\Delta = b^2 - 4ac\\\]"
-				txt += "\\\[\\Delta = " + b + "^2 - 4 . " + a + " . " + c + " = " + delta + "\\\]"
+				txt += "\\\[\\Delta = " + par(b) + "^2 - 4 . " + par(a) + " . " + par(c) + " = " + delta + "\\\]"
 				txt += "<br \>\n"
 				if(delta<0)
 				{
@@ -34,11 +39,12 @@
 					yv = a*xv*xv+b*xv+c;
 					txt += "<br \>\n"
 					txt += "Delta menor que zero (raízes complexas)!"
+					txt += "<br \>\n"
 					txt += "Raízes:\n"
-					txt += "\\\[x_1 = \\frac{-b + \\sqrt{&#916}}{2a} = \\frac{" + -b + " + " + Math.sqrt(-delta).toPrecision(4) + "i }{" + 2*a + "} = " -b/2 + " "+ Math.sqrt(-delta).toPrecision(4)/2 + "i\\\]";
+					txt += "\\\[x_1 = \\frac{-b + \\sqrt{&#916}}{2a} = \\frac{" + -b + " + \\sqrt{" + delta + "}}{" + 2*a + "} = " + (-b/2*a) + " + " + Math.sqrt(-delta).toPrecision(4) + "i\\\]";
 						
 					txt += "<br \>\n"
-					txt += "\\\[x_2 = \\frac{-b - \\sqrt{&#916}}{2a} = \\frac{" + -b + " - " + Math.sqrt(-delta).toPrecision(4) + "i }{" + 2*a + "} = " + x2.toPrecision(4) + "i\\\]";
+					txt += "\\\[x_2 = \\frac{-b - \\sqrt{&#916}}{2a} = \\frac{" + -b + " - \\sqrt{" + delta + "}}{" + 2*a + "} = " + (-b/2*a) + " + " + -Math.sqrt(-delta).toPrecision(4) + "i\\\]";
 					if(a > 0){
 						txt += "Ponto mínimo em ("+xv.toPrecision(2)+","+yv.toPrecision(2)+")."
 					}else{
@@ -119,7 +125,7 @@
         <input type="text" style="width:50px" id="c" value=-4 onkeydown="javscript:solve()" onkeyup="javscript:solve()"></input> = 0
         <div id="saida"> a</div>
         </div>
-        <canvas id="xy-graph" width=100%></canvas>
+        <canvas id="xy-graph" width=400px height=200px></canvas>
         </div>
         
         <script type="text/javascript" src="canvas-graph.js"></script>
