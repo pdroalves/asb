@@ -45,13 +45,13 @@ var radius = 3;
 
 // Seta o limite direito no eixo X
 function setMaxX(n){
-	horizonteMaxY = n;
+	horizonteMaxX = n;
 	return;
 }
 
 // Seta o limite esquerdo no eixo X
 function setMinX(n){
-	horizonteMinY = n;
+	horizonteMinX = n;
 	return;
 	
 // Seta o limite superior no eixo Y
@@ -102,7 +102,7 @@ function DrawPonto(x,y,txt){
 		Ctx = Canvas.getContext('2d');
 		Ctx.beginPath();
 		//Ctx.moveTo(XC(x),YC(y));
-		Ctx.fillText(txt,XC(x+1), YC(y+1));
+		Ctx.fillText(txt,XC(x+0.2), YC(y+0.2));
 		Ctx.arc(XC(x), YC(y), radius, 0 , 2 * Math.PI, false);
 		Ctx.fillStyle = 'black';
 		Ctx.fill();
@@ -154,10 +154,10 @@ function DrawParabola(a,b,c,x1,x2,xv,yv) {
    DrawAxes() ;
    RenderFunction(F) ;
    if(x1 != null && x2 != null){
-	   DrawPonto(x1,0,"Raiz");
-	   DrawPonto(x2,0,"Raiz");
+	   DrawPonto(x1,0,"x1: "+x1.toPrecision(2));
+	   DrawPonto(x2,0,"x2: "+x2.toPrecision(2));
    }
-   DrawPonto(xv,yv,"Vértice");
+   DrawPonto(xv,yv,"("+xv.toPrecision(2)+","+yv.toPrecision(2)+")");
   } else {
     document.writeln("Deu pau");
   }
@@ -165,12 +165,12 @@ function DrawParabola(a,b,c,x1,x2,xv,yv) {
 
 // Returns the distance between ticks on the X axis:
 function XTickDelta() {
-  return 1 ;
+  return Math.pow(10,Math.round(Math.log(Math.max(Math.abs(MaxX()),Math.abs(MinX())))/Math.LN10)-1) ;
 }
 
 // Returns the distance between ticks on the Y axis:
 function YTickDelta() {
-  return 1 ;
+  return Math.pow(10,Math.round(Math.log(Math.max(Math.abs(MaxY()),Math.abs(MinY())))/Math.LN10)-1) ;
 }
 
   
@@ -234,13 +234,17 @@ function DrawAxes() {
   Ctx.moveTo(XC(i * delta),YC(0)-5) ;
   Ctx.lineTo(XC(i * delta),YC(0)+5) ;
   Ctx.stroke() ;  
+  
+  //teste escrever no eixo x
+  //ctx.font="10px Arial";
+  //Ctx.fillText(i*delta,XC(i*delta),YC(0)-10);
  }
  Ctx.restore() ;
 }
 
 
 // When rendering, XSTEP determines the horizontal distance between points:
-var XSTEP = (MaxX()-MinX())/Width ;
+var XSTEP = 0.1*(MaxX()-MinX())/(Width) ;
 
 
 // RenderFunction(f) renders the input funtion f on the canvas.
