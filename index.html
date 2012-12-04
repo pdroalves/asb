@@ -63,9 +63,9 @@
             
 				document.getElementById("saida").innerHTML = txt;
 			
-				setMaxX(Math.max(x1*1.5,x2*1.5));
-				setMinX(Math.min(x1*1.5,x2*1.5));
-				
+				setMaxX(Math.abs(Math.max(x1*1.5,x2*1.5)));
+				setMinX(-Math.abs(Math.min(x1*1.5,x2*1.5)));
+	
 				if(yv < 0)
 				{
 					setMaxY(-yv/2);
@@ -78,7 +78,7 @@
 				if(b == 0){
 					if(c == 0){document.getElementById("saida").innerHTML = "Isso não faz sentido!\n"}
 					else{document.getElementById("saida").innerHTML = "Solução não existe."}
-				}else{
+				}else{					
 					x1 = -c/b;
 					setMaxX(x1*1.5);
 					setMinX(x1*0.5);

@@ -43,13 +43,13 @@ var horizonteMinY = -10;
 
 // Seta o limite direito no eixo X
 function setMaxX(n){
-	horizonteMaxY = n;
+	horizonteMaxX = n;
 	return;
 }
 
 // Seta o limite esquerdo no eixo X
 function setMinX(n){
-	horizonteMinY = n;
+	horizonteMinX = n;
 	return;
 	
 // Seta o limite superior no eixo Y
@@ -122,12 +122,12 @@ function Draw() {
 
 // Returns the distance between ticks on the X axis:
 function XTickDelta() {
-  return 1 ;
+  return Math.pow(10,Math.round(Math.log(Math.max(Math.abs(MaxX()),Math.abs(MinX())))/Math.LN10)-1) ;
 }
 
 // Returns the distance between ticks on the Y axis:
 function YTickDelta() {
-  return 1 ;
+  return Math.pow(10,Math.round(Math.log(Math.max(Math.abs(MaxY()),Math.abs(MinY())))/Math.LN10)-1) ;
 }
 
   
@@ -191,6 +191,10 @@ function DrawAxes() {
   Ctx.moveTo(XC(i * delta),YC(0)-5) ;
   Ctx.lineTo(XC(i * delta),YC(0)+5) ;
   Ctx.stroke() ;  
+  
+  //teste escrever no eixo x
+  //ctx.font="10px Arial";
+  //Ctx.fillText(i*delta,XC(i*delta),YC(0)-10);
  }
  Ctx.restore() ;
 }
