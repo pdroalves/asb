@@ -98,15 +98,19 @@ function YC(y) {
 }
 
 function DrawPonto(x,y,txt){
-	Ctx = Canvas.getContext('2d');
-	Ctx.beginPath();
-	//Ctx.moveTo(XC(x),YC(y));
-	Ctx.fillText(txt,XC(x+1), YC(y+1));
-	Ctx.arc(XC(x), YC(y), radius, 0 , 2 * Math.PI, false);
-	Ctx.fillStyle = 'black';
-	Ctx.fill();
-    Ctx.strokeStyle = '#000000';
-    Ctx.stroke();
+	 if (Canvas.getContext) {
+		Ctx = Canvas.getContext('2d');
+		Ctx.beginPath();
+		//Ctx.moveTo(XC(x),YC(y));
+		Ctx.fillText(txt,XC(x+1), YC(y+1));
+		Ctx.arc(XC(x), YC(y), radius, 0 , 2 * Math.PI, false);
+		Ctx.fillStyle = 'black';
+		Ctx.fill();
+		Ctx.strokeStyle = '#000000';
+		Ctx.stroke();
+	}else{
+		document.writeln("Not working.");
+	}
 }
 
 /* Rendering functions */
@@ -129,7 +133,7 @@ function DrawLine(b,c,x0) {
    RenderFunction(F) ;
    DrawPonto(x0,0,"Raiz");
   } else {
-    document.writeln("Deu pau");
+    document.writeln("Not working");
   }
 }
 

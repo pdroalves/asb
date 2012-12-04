@@ -24,44 +24,28 @@
             
 				xv = (-b)/(2*a);
 				yv = a*xv*xv+b*xv+c;
-            
-          
 				
-				if (navigator.onLine) {
-					console.log("Online");
-					txt = "<br \>\n"
-					txt += "\\\[\\Delta = b^2 - 4ac\\\]"
-					txt += "\\\[\\Delta = " + b + "^2 - 4 . " + a + " . " + c + " = " + delta + "\\\]"
+				txt = "<br \>\n"
+				txt += "Resolvendo um polinômio de segundo grau:\n"
+				txt += "\\\[\\Delta = b^2 - 4ac\\\]"
+				txt += "\\\[\\Delta = " + b + "^2 - 4 . " + a + " . " + c + " = " + delta + "\\\]"
+				txt += "<br \>\n"
+				if(delta<0)
+				{
 					txt += "<br \>\n"
+					txt += "Delta menor que zero (raízes complexas)"
+				}else{
+					txt += "Raízes:\n"
 					txt += "\\\[x_1 = \\frac{-b + \\sqrt{&#916}}{2a} = \\frac{" + -b + " + " + Math.sqrt(delta).toPrecision(4) + "}{" + 2*a + "} = " + x1.toPrecision(4) + "\\\]";
-					
+						
 					txt += "<br \>\n"
 					txt += "\\\[x_2 = \\frac{-b - \\sqrt{&#916}}{2a} = \\frac{" + -b + " - " + Math.sqrt(delta).toPrecision(4) + "}{" + 2*a + "} = " + x2.toPrecision(4) + "\\\]";
-					
-					if(delta<0)
-					{
-						txt += "<br \>\n"
-						txt += "Delta menor que zero (raízes complexas)"
+					if(a > 0){
+						txt += "Ponto mínimo em ("+xv+","+yv+")."
+					}else{
+						txt += "Ponto máximo em ("+xv+","+yv+")."
 					}
-				} else {
-					console.log("Offline");
-					txt = "<br \>\n"
-					txt = "<b> Atenção: conexão com a internet não foi detectada. Conecte-se para melhor visualização.</b>"
-					txt += "&#916 = b^2 - 4ac]"
-					txt += "&#916 = " + b + "^2 - 4 . " + str_a + " . " + c + " = " + delta
-					txt += "<br \>\n"
-					txt += "x_1 = [-b + sqrt(&#916)]/(2a) = (" + -b + " + " + Math.sqrt(delta).toPrecision(4) + ")/(" + 2*a + ") = " + x1.toPrecision(4);
-					
-					txt += "<br \>\n"
-					txt += "x_2 = [-b - sqrt(&#916)]/(2a) = (" + -b + " - " + Math.sqrt(delta).toPrecision(4) + ")/(" + 2*a + ") = " + x2.toPrecision(4);
-					
-					if(delta<0)
-					{
-						txt += "<br \>\n"
-						txt += "Delta menor que zero (raízes complexas)"
-					}
-				}
-            
+				}	
 				document.getElementById("saida").innerHTML = txt;
 			
 				setMaxX(Math.max(x1*1.5,x2*1.5));
@@ -84,20 +68,23 @@
 			}else{// Reta
 				console.log("Reta");
 				if(b == 0){
-					if(c == 0){document.getElementById("saida").innerHTML = "Isso não faz sentido!\n"}
-					else{document.getElementById("saida").innerHTML = "Solução não existe."}
+					if(c == 0){document.getElementById("saida").innerHTML = "Infinitas soluções!\n"}
+					else{document.getElementById("saida").innerHTML = "Não há solução."}
 				}else{
-					x1 = -c/b;
-					setMaxX(x1*1.5);
-					setMinX(x1*0.5);
-					setMaxY(10);
-					setMinY(-10);
-					txt = "Primeiro grau\n"
-					document.getElementById("saida").innerHTML = txt;
+						x1 = -c/b;
+						setMaxX(x1*1.5);
+						setMinX(x1*0.5);
+						setMaxY(10);
+						setMinY(-10);
+						txt = "<br \>\n"
+						txt += "Resolvendo um polinômio de primeiro grau:\n"
+						txt += "\\\[x = \\frac{c}{b} = \\frac{" + c + "}{" + b + "} = " + x1.toPrecision(4) + "\\\]";
+						
+						document.getElementById("saida").innerHTML = txt;
 
-					// Desenha o gráfico
-					MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-					DrawLine(b, c,x1);
+						// Desenha o gráfico
+						MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+						DrawLine(b, c,x1);
 				}
 			}
 			
