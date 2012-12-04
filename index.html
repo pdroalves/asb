@@ -22,7 +22,7 @@
             
             if(a != 0){//Parabola
 				console.log("Parabola");
-				delta = b^2 - 4*a*c
+				delta = b*b - 4*a*c
 				
 				function par(n){
 					if(n<0) return "(" + n + ")";
@@ -79,16 +79,22 @@
 				}	
 				document.getElementById("saida").innerHTML = txt;
 			
-				setMaxX(Math.abs(Math.max(x1*1.5,x2*1.5)));
-				setMinX(-Math.abs(Math.min(x1*1.5,x2*1.5)));
+				if(x1==x2) {
+					setMaxX(x1+2.5);
+					setMinX(x1-2.5);
+				}
+				else {
+					setMaxX(Math.max(x1+1.5,x2+1.5));
+					setMinX(Math.min(x1-1.5,x2-1.5));
+				}
 	
 				if(yv < 0)
 				{
-					setMaxY(-yv/2);
-					setMinY(yv*1.5);
+					setMaxY(+1.15);
+					setMinY(yv-1.5);
 				}else{
-					setMaxY(yv*1.5);
-					setMinY(-yv/2);
+					setMaxY(yv+1.5);
+					setMinY(-1.15);
 				}
 				
 				
@@ -106,13 +112,13 @@
 					else{document.getElementById("saida").innerHTML = "Não há solução."}
 				}else{
 						x1 = -c/b;
-						setMaxX(x1*1.5);
-						setMinX(x1*0.5);
+						setMaxX(x1+0.5);
+						setMinX(x1-0.5);
 						setMaxY(10);
 						setMinY(-10);
 						txt = "<br \>\n"
 						txt += "Resolvendo um polinômio de primeiro grau:\n"
-						txt += "\\\[x = \\frac{c}{b} = \\frac{" + c + "}{" + b + "} = " + x1.toPrecision(4) + "\\\]";
+						txt += "\\\[x = \\frac{-c}{b} = \\frac{" + -c + "}{" + b + "} = " + x1.toPrecision(4) + "\\\]";
 						
 						document.getElementById("saida").innerHTML = txt;
 

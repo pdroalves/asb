@@ -120,7 +120,7 @@ function DrawLine(b,c,x0) {
 	//Recebe os coeficientes b e c além da raiz da reta
 
  // Evaluate the user-supplied code, which must bind a value to F.
- var F = function(x){return window.b*x+window.c};
+ var F = function(x){return b*x+c};
  
  if (Canvas.getContext) {
   
@@ -131,7 +131,7 @@ function DrawLine(b,c,x0) {
    // Draw:
    DrawAxes() ;
    RenderFunction(F) ;
-   DrawPonto(x0,0,"Raiz");
+   DrawPonto(x0,0,"x: " + x0.toPrecision(2));
   } else {
     document.writeln("Not working");
   }
