@@ -40,9 +40,9 @@
 					txt += "<br \>\n"
 					txt += "\\\[x_2 = \\frac{-b - \\sqrt{&#916}}{2a} = \\frac{" + -b + " - " + Math.sqrt(-delta).toPrecision(4) + "i }{" + 2*a + "} = " + x2.toPrecision(4) + "i\\\]";
 					if(a > 0){
-						txt += "Ponto mínimo em ("+xv+","+yv+")."
+						txt += "Ponto mínimo em ("+xv.toPrecision(2)+","+yv.toPrecision(2)+")."
 					}else{
-						txt += "Ponto máximo em ("+xv+","+yv+")."
+						txt += "Ponto máximo em ("+xv.toPrecision(2)+","+yv.toPrecision(2)+")."
 					}
 				
 				}else{
@@ -57,9 +57,9 @@
 					txt += "<br \>\n"
 					txt += "\\\[x_2 = \\frac{-b - \\sqrt{&#916}}{2a} = \\frac{" + -b + " - " + Math.sqrt(delta).toPrecision(4) + "}{" + 2*a + "} = " + x2.toPrecision(4) + "\\\]";
 					if(a > 0){
-						txt += "Ponto mínimo em ("+xv+","+yv+")."
+						txt += "Ponto mínimo em ("+xv.toPrecision(2)+","+yv.toPrecision(2)+")."
 					}else{
-						txt += "Ponto máximo em ("+xv+","+yv+")."
+						txt += "Ponto máximo em ("+xv.toPrecision(2)+","+yv.toPrecision(2)+")."
 					}
 				}	
 				document.getElementById("saida").innerHTML = txt;
