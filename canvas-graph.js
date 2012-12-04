@@ -153,8 +153,10 @@ function DrawParabola(a,b,c,x1,x2,xv,yv) {
    // Draw:
    DrawAxes() ;
    RenderFunction(F) ;
-   DrawPonto(x1,0,"Raiz");
-   DrawPonto(x2,0,"Raiz");
+   if(x1 != null && x2 != null){
+	   DrawPonto(x1,0,"Raiz");
+	   DrawPonto(x2,0,"Raiz");
+   }
    DrawPonto(xv,yv,"Vértice");
   } else {
     document.writeln("Deu pau");

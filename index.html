@@ -28,6 +28,8 @@
 				if(delta<0)
 				{
 				
+					x1 = ((-b + Math.sqrt(-delta))/(2*a));
+					x2 = ((-b - Math.sqrt(-delta))/(2*a));
 					xv = (-b)/(2*a);
 					yv = a*xv*xv+b*xv+c;
 					txt += "<br \>\n"
@@ -76,8 +78,13 @@
 				
 				
 				// Desenha o gráfico
-				MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-				DrawParabola(a, b, c,x1,x2,xv,yv);
+				if(delta >= 0){
+					MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+					DrawParabola(a, b, c,x1,x2,xv,yv);
+				}else{
+					MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+					DrawParabola(a, b, c,null,null,xv,yv);
+				}
 				
 			}else{// Reta
 				console.log("Reta");
