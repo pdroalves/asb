@@ -102,7 +102,7 @@ function DrawPonto(x,y,txt){
 		Ctx = Canvas.getContext('2d');
 		Ctx.beginPath();
 		//Ctx.moveTo(XC(x),YC(y));
-		Ctx.fillText(txt,XC(x+1), YC(y+1));
+		Ctx.fillText(txt,XC(x+0.2), YC(y+0.2));
 		Ctx.arc(XC(x), YC(y), radius, 0 , 2 * Math.PI, false);
 		Ctx.fillStyle = 'black';
 		Ctx.fill();
@@ -154,10 +154,10 @@ function DrawParabola(a,b,c,x1,x2,xv,yv) {
    DrawAxes() ;
    RenderFunction(F) ;
    if(x1 != null && x2 != null){
-	   DrawPonto(x1,0,"Raiz");
-	   DrawPonto(x2,0,"Raiz");
+	   DrawPonto(x1,0,"x1: "+x1.toPrecision(2));
+	   DrawPonto(x2,0,"x2: "+x2.toPrecision(2));
    }
-   DrawPonto(xv,yv,"Vértice");
+   DrawPonto(xv,yv,"("+xv.toPrecision(2)+","+yv.toPrecision(2)+")");
   } else {
     document.writeln("Deu pau");
   }
